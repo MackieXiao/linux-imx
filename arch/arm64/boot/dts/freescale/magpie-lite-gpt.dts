@@ -1,0 +1,32 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright 2019-2020 NXP
+ */
+
+/dts-v1/;
+#include <dt-bindings/clock/imx8mm-clock.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include "magpie-lite.dts"
+
+&aips1 {
+    gpt1: gpt@302d0000 {
+        compatible = "fsl,imx8mm-gpt";
+        reg = <0x302d0000 0x10000>;
+        interrupts = <GIC_SPI 55 IRQ_TYPE_EDGE_BOTH>;
+        clocks = <&clk IMX8MM_CLK_GPT1_ROOT>,
+                 <&clk IMX8MM_CLK_GPT1_ROOT>,
+                 <&clk IMX8MM_CLK_GPT_3M>;
+        clock-names = "ipg", "per", "osc_per";
+        pinctrl-names = "default";
+        pinctrl-0 = <&pinctrl_gpt_input_capture0>;
+        status = "okay";
+    };
+};
+
+&iomuxc {
+    pinctrl_gpt_input_capture0: gpt_input_capture0_grp {
+        fsl,pins = <
+            MX8MM_IOMUXC_SAI3_RXFS_GPT1_CAPTURE1 0xd6
+        >;
+    };
+};

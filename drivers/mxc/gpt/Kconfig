@@ -1,0 +1,14 @@
+#
+# GPT configuration
+#
+
+menu "MXC GPT Support"
+
+config MXC_GPT
+    tristate "MXC GPT support"
+    depends on ARCH_MXC || ARCH_MXC_ARM64
+    default n
+    help
+    Say Y if you want to use the gpt
+
+endmenu
