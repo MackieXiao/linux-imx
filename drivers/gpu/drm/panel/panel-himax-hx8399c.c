@@ -477,8 +477,6 @@ static int himax_panel_probe(struct mipi_dsi_device *dsi)
     int ret = 0;
     u32 video_mode;
 
-    printk("Mackie");
-
     /* check device node existence */
     if (!of_id || !of_id->data)
         return -ENODEV;
@@ -546,17 +544,14 @@ static int himax_panel_probe(struct mipi_dsi_device *dsi)
     }
 
     /* get backlight gpio from device tree */
-    printk("Mackie: get backlight\n");
     ctx->backlight = devm_gpiod_get_optional(dev, "backlight",
                            GPIOD_OUT_HIGH |
                            GPIOD_FLAGS_BIT_NONEXCLUSIVE);
     if (IS_ERR(ctx->backlight)) {
         ret = PTR_ERR(ctx->backlight);
         dev_err(dev, "Failed to get backlight gpio (%d)\n", ret);
-        printk("Mackie: Failed to get backlight gpio\n");
         return ret;
     }
-    printk("Mackie: get backlight end\n");
 
     gpiod_set_value_cansleep(ctx->reset, 1);
 
