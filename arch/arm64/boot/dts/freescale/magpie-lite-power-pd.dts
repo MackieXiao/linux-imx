@@ -1,0 +1,20 @@
+#include "magpie-lite-hx8399c.dts"
+
+&i2c1 {
+    ina219@4c {
+        compatible = "ti,ina219";
+        reg = <0x4c>;
+        shunt-resistor = <10000>;
+    };
+
+    ina219@48 {
+        compatible = "ti,ina219";
+        reg = <0x48>;
+        shunt-resistor = <10000>;
+    };
+
+    pcf8563@51 {
+        compatible = "nxp,pcf8563";
+        reg = <0x51>;
+    };
+};
